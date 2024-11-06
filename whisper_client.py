@@ -18,7 +18,7 @@ if audio:
     audio_bytes = audio.read()
     st.audio(audio_bytes, format='audio/wav', start_time=0)
     request_kwargs["files"] = {'file': audio_bytes}
-    response = requests.post(endpoint, **request_kwargs)
+    response = requests.post(endpoint, verify=False, **request_kwargs)
     response_json = response.json()
     st.subheader(f"Translated Text")
     st.text_area(label="", value=response_json['text'], height=300)
